@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aquality.Selenium.Template.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aquality.Selenium.Template", "Aquality.Selenium.Template\Aquality.Selenium.Template.csproj", "{84ADF59F-0C6C-4C35-BB35-D393571939D2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "A1qa.SteamTest", "A1qa.SteamTest\A1qa.SteamTest.csproj", "{FF1C247F-33E6-4E84-9A45-5E3F69B5741F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{84ADF59F-0C6C-4C35-BB35-D393571939D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{84ADF59F-0C6C-4C35-BB35-D393571939D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{84ADF59F-0C6C-4C35-BB35-D393571939D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF1C247F-33E6-4E84-9A45-5E3F69B5741F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF1C247F-33E6-4E84-9A45-5E3F69B5741F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF1C247F-33E6-4E84-9A45-5E3F69B5741F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF1C247F-33E6-4E84-9A45-5E3F69B5741F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
