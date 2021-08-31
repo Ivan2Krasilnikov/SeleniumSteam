@@ -1,4 +1,5 @@
-﻿using Aquality.Selenium.Elements;
+﻿using A1qa.SteamTest.utils;
+using Aquality.Selenium.Elements;
 using Aquality.Selenium.Elements.Interfaces;
 using Aquality.Selenium.Forms;
 using OpenQA.Selenium;
@@ -16,32 +17,24 @@ namespace A1qa.SteamTest.pages
         private ILabel searchForm => ElementFactory.GetLabel(By.Id("advsearchform"), "Search form");
         private IButton sortTrigger => ElementFactory.GetButton(By.Id("sort_by_trigger"), "Sort trigger");
         private IButton priceDescSelector => ElementFactory.GetButton(By.Id("Price_DESC"), "Price desc selector");
-        //private ITextBox finalPrice => ElementFactory.GetTextBox(By.XPath("//div[@data-price-final]"), "Final price");
+        private ILabel searchResultContainer => ElementFactory.GetLabel(By.XPath("//div[@id='search_result_container' and @style='opacity: 0.5;']"), "Result container");
         private IList<ITextBox> finalPrice => ElementFactory.FindElements<ITextBox>(By.XPath("//div[@data-price-final]"));
         public SearchPage() : base(By.Id("advsearchform"), "Search form")
         {
         
         }
-        public bool IsSearchPageOpened()
+        public bool IsGamesListNotEmpty()
         {
-            return searchForm.GetElement().Displayed;
+            return finalPrice.Count > 0;
         }
-        public List<string> SortGamesInDesc()
+        public List<int> SortGamesInDesc(int amount)
         {
             sortTrigger.Click();
             priceDescSelector.Click();
-            List<string> prices = ExtractPricesFromList(finalPrice);
+            searchResultContainer.State.WaitForDisplayed();
+            searchResultContainer.State.WaitForNotDisplayed();
+            List<int> prices = ListUtils.ExtractPricesFromList(finalPrice, amount);
             return prices;
         }
-        public static List<string> ExtractPricesFromList(IList<ITextBox> rawPrices)
-        {
-            List<string> priceList = new List<string>();
-            foreach (ITextBox price in rawPrices.ToList())
-            {
-                priceList.Add(price.GetAttribute("data-price-final"));
-            }
-            return priceList;
-        }
-
     }
 }

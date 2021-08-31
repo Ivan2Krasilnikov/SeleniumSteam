@@ -18,14 +18,9 @@ namespace A1qa.SteamTest.pages
         public MainPage() : base(By.ClassName("home_page_content"), "Title")
         {
         }
-
-        public bool IsMainPageOpened()
+        public void SearchGame(string game)
         {
-            return Title.GetElement().Displayed;
-        }
-        public void SearchGame()
-        {
-            StoreNavSearchTerm.SendKeys("The Witcher");
+            StoreNavSearchTerm.SendKeys(game);
             StoreSearchLinkImage.Click();
         }
     }   

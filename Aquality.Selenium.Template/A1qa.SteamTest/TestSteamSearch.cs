@@ -19,22 +19,24 @@ namespace A1qa.SteamTest
         }
 
         [Test]
-        public void TestSteamSeacrh()
+        [TestCase("The Witcher", 10)]
+        [TestCase("Fallout", 20)]
+        public void TestSteamSeacrh(string game, int amount)
         {
             MainPage mainPage = new MainPage();
-            Assert.IsTrue(mainPage.IsMainPageOpened());
+            Assert.IsTrue(mainPage.State.IsDisplayed);
 
-            mainPage.SearchGame();
+            mainPage.SearchGame(game);
             SearchPage searchPage = new SearchPage();
-            Assert.IsTrue(searchPage.IsSearchPageOpened());
+            Assert.IsTrue(searchPage.State.IsDisplayed);
 
-            
-            var prices = searchPage.SortGamesInDesc();
+            Assert.IsTrue(searchPage.IsGamesListNotEmpty());
+
+            var prices = searchPage.SortGamesInDesc(amount);
             var copy = prices.ToList();
             copy.Sort();
             copy.Reverse();
-            Assert.That(prices, Is.EquivalentTo(copy));
-
+            Assert.AreEqual(prices, copy);
         }
         [TearDown]
         public void CloseBrowser()
