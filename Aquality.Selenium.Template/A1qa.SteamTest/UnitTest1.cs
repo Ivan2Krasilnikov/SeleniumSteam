@@ -1,6 +1,8 @@
 using A1qa.SteamTest.pages;
 using Aquality.Selenium.Browsers;
 using NUnit.Framework;
+using System.Linq;
+using System.Threading;
 
 namespace A1qa.SteamTest
 {
@@ -24,6 +26,14 @@ namespace A1qa.SteamTest
 
             mainPage.SearchGame();
             SearchPage searchPage = new SearchPage();
+            Assert.IsTrue(searchPage.IsSearchPageOpened());
+
+            
+            var prices = searchPage.SortGamesInDesc();
+            var copy = prices.ToList();
+            copy.Sort();
+            copy.Reverse();
+            Assert.That(prices, Is.EquivalentTo(copy));
 
         }
         [TearDown]
