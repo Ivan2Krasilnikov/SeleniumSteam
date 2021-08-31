@@ -24,19 +24,19 @@ namespace A1qa.SteamTest
         public void TestSteamSeacrh(string game, int amount)
         {
             MainPage mainPage = new MainPage();
-            Assert.IsTrue(mainPage.State.IsDisplayed);
+            Assert.IsTrue(mainPage.State.IsDisplayed, "Page is not opened");
 
             mainPage.SearchGame(game);
             SearchPage searchPage = new SearchPage();
-            Assert.IsTrue(searchPage.State.IsDisplayed);
+            Assert.IsTrue(searchPage.State.IsDisplayed, "Page is not opened");
 
-            Assert.IsTrue(searchPage.IsGamesListNotEmpty());
+            Assert.IsTrue(searchPage.IsGamesListNotEmpty(), "Games list is empty");
 
             var prices = searchPage.SortGamesInDesc(amount);
             var copy = prices.ToList();
             copy.Sort();
             copy.Reverse();
-            Assert.AreEqual(prices, copy);
+            Assert.AreEqual(prices, copy, "Games not sorted in descending order");
         }
         [TearDown]
         public void CloseBrowser()
